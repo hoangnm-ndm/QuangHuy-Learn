@@ -1,11 +1,11 @@
 import "./App.css";
-import Layout from "./layouts/client/Layout";
+import AppRoute from "./routes/AppRoute";
 
 function App() {
   // * logic
   return (
     <>
-      <Layout />
+      <AppRoute />
     </>
   );
 }
