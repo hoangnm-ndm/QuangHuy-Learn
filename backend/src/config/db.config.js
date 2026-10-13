@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
+import { envConfig } from "./env.config.js";
 
 function connectDB() {
   mongoose
-    .connect(
-      "mongodb+srv://hoangnmndm_db_user:oZlU3JtbZrxPN5tv@cluster0.lnqijzc.mongodb.net/quanghuy-nodejs?appName=Cluster0",
-    )
+    .connect(envConfig.DB_URI)
     .then(() => {
       console.log("Connect DB successfully!");
     })

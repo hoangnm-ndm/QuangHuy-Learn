@@ -3,13 +3,13 @@ import { Outlet } from "react-router";
 
 const user = {
   name: "Hoang",
-  role: "member",
+  role: "admin",
 };
 
-const ProtectedRoute = ({ roles }) => {
+const ProtectedRoute = ({ children, roles }) => {
   const checkRole = roles.includes(user.role);
 
-  if (checkRole) return <Outlet />;
+  if (checkRole) return <>{children}</>;
   return (
     <div>
       <h1>Ban khong co quyen</h1>

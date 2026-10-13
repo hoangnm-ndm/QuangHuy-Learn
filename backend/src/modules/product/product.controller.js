@@ -1,19 +1,40 @@
 import productService from "./product.service.js";
 
 const productController = {
-  createProduct: async (req, res) => {
-    console.log(req.body);
+  create: async (req, res) => {
     const data = await productService.create(req.body);
     return res.status(201).json({
       message: "Tao san pham thanh cong!",
       data,
     });
   },
-  getAllProduct: async (req, res) => {
-    return;
+  getAll: async (req, res) => {
+    const data = await productService.getAll();
+    return res.status(200).json({
+      message: "Lay danh sach san pham thanh cong!",
+      data,
+    });
   },
-  getProductById: async (req, res) => {
-    return;
+  getById: async (req, res) => {
+    const data = await productService.getById(req.params.id);
+    return res.status(200).json({
+      message: "Lay thong tin san pham thanh cong!",
+      data,
+    });
+  },
+  update: async (req, res) => {
+    const data = await productService.update(req.params.id, req.body);
+    return res.status(200).json({
+      message: "Cap nhat san pham thanh cong!",
+      data,
+    });
+  },
+  remove: async (req, res) => {
+    const data = await productService.remove(req.params.id);
+    return res.status(200).json({
+      message: "Xoa san pham thanh cong!",
+      data,
+    });
   },
 };
 
