@@ -1,23 +1,23 @@
-import React from "react";
 import { Link } from "react-router";
-import { useEffect } from "react";
-import { useState } from "react";
-import { productAPI } from "../../../../api/productAPI";
+import { useProducts } from "../../../hooks/useProducts";
 
 const ProductManagement = () => {
-  const [products, setProducts] = useState([]);
+  const { products, loading, error, removeProduct } = useProducts();
 
-  useEffect(() => {
-    (async () => {
-      const { data } = await productAPI.getAll();
-      setProducts(data.data);
-    })();
-    // IIFE
-  }, []);
+  if (loading)
+    return (
+      <>
+        <p>Loading...</p>
+      </>
+    );
 
-  const handleSortDelete = async (id) => {
-    console.log(id);
-  };
+  if (error)
+    return (
+      <>
+        <p>{error}</p>
+      </>
+    );
+
   return (
     <>
       <h1>Product Management</h1>
@@ -39,7 +39,10 @@ const ProductManagement = () => {
                 <td>{item.price}</td>
                 <td>
                   <Link to={`update/${item._id}`}>Update</Link>{" "}
-                  <button onClick={() => handleSortDelete(item._id)}>
+                  <button
+                    disabled={loading}
+                    onClick={() => removeProduct(item._id)}
+                  >
                     Archive
                   </button>
                 </td>
