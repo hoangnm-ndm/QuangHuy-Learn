@@ -1,8 +1,9 @@
 import { Link } from "react-router";
-import { useProducts } from "../../../hooks/useProducts";
+import { productAPI } from "../../../../api/productAPI";
+import { useCRUD } from "../../../hooks/useCRUD";
 
 const ProductManagement = () => {
-  const { products, loading, error, removeProduct } = useProducts();
+  const { data, loading, error, remove } = useCRUD(productAPI);
 
   if (loading)
     return (
@@ -31,18 +32,15 @@ const ProductManagement = () => {
           </tr>
         </thead>
         <tbody>
-          {products.length !== 0 &&
-            products.map((item) => (
+          {data.length !== 0 &&
+            data.map((item) => (
               <tr className="product-row" key={item._id}>
                 <td>{item._id}</td>
                 <td>{item.title}</td>
                 <td>{item.price}</td>
                 <td>
                   <Link to={`update/${item._id}`}>Update</Link>{" "}
-                  <button
-                    disabled={loading}
-                    onClick={() => removeProduct(item._id)}
-                  >
+                  <button disabled={loading} onClick={() => remove(item._id)}>
                     Archive
                   </button>
                 </td>
