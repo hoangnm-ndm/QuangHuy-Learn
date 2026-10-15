@@ -18,6 +18,7 @@ Repo được review ở mốc **Day 05 + React Hook Form**. Thầy chấm theo 
    - Middleware không gọi `next()` và không trả response sẽ làm request treo (SEC-01).
 
    → Khi để stub, hãy để stub **an toàn**: `(req, res, next) => next()` kèm `// TODO(SEC-01): ...`, hoặc trả `501 Not Implemented`.
+
 2. **Tin vào dữ liệu đầu vào.** Route sản phẩm đưa `req.body` thẳng vào DB (VAL-01). Controller auth đã validate nhưng lại đọc `req.body` thay vì `req.validated.body` (ARCH-01). Hãy nhớ: **dữ liệu đi vào DB phải là dữ liệu đã qua Zod.**
 3. **Nuốt lỗi.** `connectDB` chỉ `console.log` khi thất bại (ERR-03). `useCRUD` bắt lỗi xong không báo cho nơi gọi, nên form vẫn chuyển trang dù lưu thất bại (FE-02). Lỗi phải hoặc được xử lý thật, hoặc được ném tiếp, không được im lặng.
 4. **Chưa kiểm chứng sau khi viết.** Login đang luôn lỗi 500 vì `jwt.sign` nhận ObjectId (ERR-01). Chỉ cần gọi thử bằng Postman hoặc một test nhỏ là phát hiện. Tương tự, đường import `../../../../node_modules/...` (FE-03) là do IDE tự gợi ý; mỗi dòng auto-import, AI sinh ra hay copy về đều cần đọc lại trước khi commit.
@@ -39,18 +40,18 @@ Repo được review ở mốc **Day 05 + React Hook Form**. Thầy chấm theo 
 
 ## 5. Bảng điểm
 
-| Nhóm | Trọng số | Điểm nhóm (/10) | Đóng góp | Lý do chính |
-|---|---|---|---|---|
-| Hoàn thành nghiệp vụ | 10 | 6 | 6,0 | CRUD sản phẩm admin chạy end-to-end; đăng ký chạy; **đăng nhập hỏng** (ERR-01); trang auth/client còn placeholder (đúng tiến độ) |
-| Kiến trúc backend | 15 | 6 | 9,0 | Module hoá tốt, ESM, Express 5; trừ ARCH-01, BE-01, ERR-03; BE-02 là `[CHUẨN]` |
-| Kiến trúc frontend | 15 | 6 | 9,0 | Layout/page/router tốt, hook tái sử dụng; trừ FE-01..04; ARCH-02 `[CHUẨN]` trừ tối đa 1 điểm |
-| Bảo mật & phân quyền | 15 | 3 | 4,5 | Có 1 Critical (SEC-01) nên trần 4; thêm SEC-02 (High), SEC-03. Điểm cộng: `.env` chưa bao giờ bị commit, ẩn password trong response |
-| Database & dữ liệu | 10 | 6 | 6,0 | Schema có required/enum/default/timestamps, email unique; trừ DB-01; DB-02 `[CHUẨN]` |
-| Validation & xử lý lỗi | 10 | 4 | 4,0 | Middleware `validate` tốt, Zod 2 phía cho phần đã làm; trừ VAL-01 (High), ERR-02 (High), ERR-04 |
-| Clean Code & quy ước | 10 | 5 | 5,0 | Đặt tên file nhất quán; trừ lint fail (CODE-01), code chết (CODE-02), CODE-03 |
-| Kiểm thử | 8 | 0 | 0,0 | Không có test (TEST-01) |
-| Tài liệu & vận hành | 7 | 4 | 2,8 | Có `.gitignore` gốc, `.env.example`, script chạy đồng thời; thiếu README, docs, API docs, Prettier (DOC-01, OPS-01) |
-| **Tổng** | 100 | | **46,3/100 → 4,75/10** | Xếp loại: **Chưa đạt** (chấm theo chuẩn sản phẩm hoàn chỉnh) |
+| Nhóm                   | Trọng số | Điểm nhóm (/10) | Đóng góp               | Lý do chính                                                                                                                         |
+| ---------------------- | -------- | --------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Hoàn thành nghiệp vụ   | 10       | 6               | 6,0                    | CRUD sản phẩm admin chạy end-to-end; đăng ký chạy; **đăng nhập hỏng** (ERR-01); trang auth/client còn placeholder (đúng tiến độ)    |
+| Kiến trúc backend      | 15       | 6               | 9,0                    | Module hoá tốt, ESM, Express 5; trừ ARCH-01, BE-01, ERR-03; BE-02 là `[CHUẨN]`                                                      |
+| Kiến trúc frontend     | 15       | 6               | 9,0                    | Layout/page/router tốt, hook tái sử dụng; trừ FE-01..04; ARCH-02 `[CHUẨN]` trừ tối đa 1 điểm                                        |
+| Bảo mật & phân quyền   | 15       | 3               | 4,5                    | Có 1 Critical (SEC-01) nên trần 4; thêm SEC-02 (High), SEC-03. Điểm cộng: `.env` chưa bao giờ bị commit, ẩn password trong response |
+| Database & dữ liệu     | 10       | 6               | 6,0                    | Schema có required/enum/default/timestamps, email unique; trừ DB-01; DB-02 `[CHUẨN]`                                                |
+| Validation & xử lý lỗi | 10       | 4               | 4,0                    | Middleware `validate` tốt, Zod 2 phía cho phần đã làm; trừ VAL-01 (High), ERR-02 (High), ERR-04                                     |
+| Clean Code & quy ước   | 10       | 5               | 5,0                    | Đặt tên file nhất quán; trừ lint fail (CODE-01), code chết (CODE-02), CODE-03                                                       |
+| Kiểm thử               | 8        | 0               | 0,0                    | Không có test (TEST-01)                                                                                                             |
+| Tài liệu & vận hành    | 7        | 4               | 2,8                    | Có `.gitignore` gốc, `.env.example`, script chạy đồng thời; thiếu README, docs, API docs, Prettier (DOC-01, OPS-01)                 |
+| **Tổng**               | 100      |                 | **46,3/100 → 4,75/10** | Xếp loại: **Chưa đạt** (chấm theo chuẩn sản phẩm hoàn chỉnh)                                                                        |
 
 Không áp dụng trần tổng 5,0 vì chỉ có 1 lỗi Critical. Không cộng điểm nỗ lực: chưa có phần nào vượt yêu cầu ở mức đáng cộng.
 

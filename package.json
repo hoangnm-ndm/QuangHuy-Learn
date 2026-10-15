@@ -6,7 +6,11 @@
     "install:all": "npm --prefix frontend install && npm --prefix backend install",
     "dev:fe": "npm --prefix frontend run dev",
     "dev:be": "npm --prefix backend run dev",
+    "dev": "concurrently \"npm --prefix frontend run dev\" \"npm --prefix backend run dev\"",
     "lint": "npm --prefix frontend run lint",
     "build": "npm --prefix frontend run build"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
   }
 }
