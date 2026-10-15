@@ -1,0 +1,12 @@
+node_modules
+dist
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.log
+
+# Env: chi commit file mau
+.env
+.env.*
+!.env.example
