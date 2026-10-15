@@ -19,17 +19,49 @@ export const useCRUD = (apiService) => {
       setLoading(false);
     }
   };
+  const fetchById = async (id) => {
+    try {
+      setLoading(true);
+      setError(null);
+      const { data } = await apiService.getById(id);
+      return data.data;
+    } catch (error) {
+      setError("Co loi xay ra!");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const create = async (body) => {
-    // trycatch
-    const { data } = await apiService.create(body);
-    setData((prev) => [...prev, data.data]);
+    try {
+      setLoading(true);
+      setError(null);
+      const { data } = await apiService.create(body);
+      setData((prev) => [...prev, data.data]);
+      toast.success("Them thanh cong!");
+    } catch (error) {
+      setError("Co loi xay ra!");
+      toast.error("Them khong thanh cong!");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const update = async (id, body) => {
-    // trycatch
-    const { data } = await apiService.update(id, body);
-    setData((prev) => prev.map((item) => (item._id === id ? data.data : item)));
+    try {
+      setLoading(true);
+      setError(null);
+      const { data } = await apiService.update(id, body);
+      setData((prev) =>
+        prev.map((item) => (item._id === id ? data.data : item)),
+      );
+      toast.success("Cap nhat thanh cong!");
+    } catch (error) {
+      setError("Co loi xay ra!");
+      toast.error("Cap nhat khong thanh cong!");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const remove = async (id) => {
@@ -57,5 +89,6 @@ export const useCRUD = (apiService) => {
     create,
     update,
     remove,
+    fetchById,
   };
 };

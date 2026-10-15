@@ -21,7 +21,17 @@ const ProductManagement = () => {
 
   return (
     <>
-      <h1>Product Management</h1>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        {" "}
+        <h1>Product Management</h1>
+        <Link to="add">Add new</Link>
+      </div>
       <table border="1">
         <thead>
           <tr>
