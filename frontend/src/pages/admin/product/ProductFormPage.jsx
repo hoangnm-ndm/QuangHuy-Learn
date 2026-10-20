@@ -20,10 +20,6 @@ const ProductFormPage = () => {
   });
 
   const onSubmit = async (payload) => {
-    // event.preventDefault();
-    // const formData = new FormData(event.target);
-    // const dataForm = Object.fromEntries(formData);
-
     id ? await update(id, payload) : await create(payload);
     nav("/admin/san-pham");
   };

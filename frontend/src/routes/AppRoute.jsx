@@ -4,15 +4,11 @@ import {
   default as ClientLayout,
   default as Layout,
 } from "../layouts/client/ClientLayout";
-import AboutPage from "../pages/client/AboutPage";
-import HomePage from "../pages/client/HomePage";
-import ProductPage from "../pages/client/ProductPage";
-import ForgotPasswordPage from "../pages/common/ForgotPasswordPage";
-import LoginPage from "../pages/common/LoginPage";
 import NotFoundPage from "../pages/common/NotFoundPage";
-import RegisterPage from "../pages/common/RegisterPage";
 import { ROLES } from "../shared/constanst";
 import { adminRoutes } from "./adminRoutes";
+import { authRoutes } from "./authRoutes";
+import { clientRoutes } from "./clientRoutes";
 import ProtectedRoute from "./ProtectedRoute";
 
 const AppRoute = () => {
@@ -21,11 +17,7 @@ const AppRoute = () => {
     {
       path: "/",
       element: <ClientLayout />,
-      children: [
-        { path: "", element: <HomePage /> },
-        { path: "san-pham", element: <ProductPage /> },
-        { path: "ve-chung-toi", element: <AboutPage /> },
-      ],
+      children: clientRoutes,
     },
 
     // Adminb
@@ -44,11 +36,7 @@ const AppRoute = () => {
       // notfound
       path: "/auth",
       element: <Layout />,
-      children: [
-        { path: "register", element: <RegisterPage /> },
-        { path: "login", element: <LoginPage /> },
-        { path: "register", element: <ForgotPasswordPage /> },
-      ],
+      children: authRoutes,
     },
 
     { path: "*", element: <NotFoundPage /> },
