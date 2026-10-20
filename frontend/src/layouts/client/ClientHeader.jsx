@@ -1,7 +1,10 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router";
+import { CartContext } from "../../contexts/CartContext";
 
 const ClientHeader = () => {
+  const { cart } = useContext(CartContext);
   return (
     <header>
       <div className="logo">Logo</div>
@@ -18,6 +21,9 @@ const ClientHeader = () => {
           </li>
         </ul>
       </nav>
+      <div className="user-control">
+        <p>Cart: {cart.items.length}</p>
+      </div>
     </header>
   );
 };

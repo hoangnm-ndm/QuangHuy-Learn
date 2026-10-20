@@ -20,10 +20,9 @@ const CartContextProvider = ({ children }) => {
     const checkProductExistCart = cart.items.find(
       (item) => item._id === product._id,
     );
-
     // ? sai
 
-    console.log(checkProductExistCart);
+    console.log({ checkProductExistCart });
     if (checkProductExistCart) {
       setCart((prev) => ({
         ...prev,
@@ -41,10 +40,12 @@ const CartContextProvider = ({ children }) => {
         total: calcTotal(prev.items),
       }));
     }
+    localStorage.setItem("cart", JSON.stringify(cart));
   };
 
   const removeCart = (item) => {};
   const updateQuantity = (item, quantity) => {};
+
   return (
     <CartContext.Provider
       value={{ cart, addToCart, updateQuantity, removeCart }}
