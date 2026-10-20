@@ -2,9 +2,12 @@ import React from "react";
 import { useCRUD } from "../../hooks/useCRUD";
 import { productAPI } from "../../../api/productAPI";
 import { useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "../../contexts/CartContext";
 
 const HomePage = () => {
   const { data } = useCRUD(productAPI);
+  const value = useContext(CartContext);
   const initCart = JSON.parse(localStorage.getItem("cart" || "{}")) ?? {
     items: [],
     userId: "123",

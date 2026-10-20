@@ -60,6 +60,31 @@ const ProductFormPage = () => {
         </div>
 
         <div className="form-group">
+          <label htmlFor="">Quantity</label>
+          <input
+            type="number"
+            placeholder="Quantity"
+            {...register("quantity", { valueAsNumber: true, required: true })}
+            defaultValue={1}
+          />
+          {errors?.quantity && (
+            <span style={{ color: "red" }}>{errors.quantity.message}</span>
+          )}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="">Thumbnail</label>
+          <input
+            type="text"
+            placeholder="Thumbnail"
+            {...register("thumbnail")}
+          />
+          {errors?.thumbnail && (
+            <span style={{ color: "red" }}>{errors.thumbnail.message}</span>
+          )}
+        </div>
+
+        <div className="form-group">
           <label htmlFor="">Description</label>
           <textarea
             placeholder="Description"
