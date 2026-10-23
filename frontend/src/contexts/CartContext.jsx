@@ -37,6 +37,9 @@ const CartContextProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
   };
 
+  /**
+   * * Lưu ý quantity không vượt quá stock và không âm.
+   */
   const removeCart = (item) => {};
   const updateQuantity = (item, quantity) => {};
 
