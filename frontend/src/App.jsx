@@ -1,4 +1,5 @@
 import "./App.css";
+import Counter from "./pages/common/Counter";
 import AppRoute from "./routes/AppRoute";
 import { ToastContainer } from "react-toastify";
 
@@ -6,7 +7,8 @@ function App() {
   // * logic
   return (
     <>
-      <AppRoute />
+      {/* <AppRoute /> */}
+      <Counter />
       <ToastContainer />
     </>
   );
