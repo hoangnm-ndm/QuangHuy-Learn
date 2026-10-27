@@ -1,20 +1,11 @@
-import React from "react";
-import { useCRUD } from "../../hooks/useCRUD";
 import { productAPI } from "../../../api/productAPI";
-import { useState } from "react";
-import { useContext } from "react";
-import { CartContext } from "../../contexts/CartContext";
+import { useCRUD } from "../../hooks/useCRUD";
+import { cartStore } from "../../store/cartStore";
 
 const HomePage = () => {
   const { data } = useCRUD(productAPI);
-  const { cart, addToCart } = useContext(CartContext);
-  const initCart = JSON.parse(localStorage.getItem("cart" || "{}")) ?? {
-    items: [],
-    userId: "123",
-    total: 0,
-  };
-  // total tinh sai
-  // khi them san pham da co thi can tang so luong thay vi tao 1 ban ghi moi
+  const { cart, addToCart, resetCart } = cartStore();
+  console.log(cart);
   return (
     <div>
       {data.map((item) => (
