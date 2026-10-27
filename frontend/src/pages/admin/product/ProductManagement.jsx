@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { productAPI } from "../../../../api/productAPI";
+import { productAPI } from "../../../api/productAPI";
 import { useCRUD } from "../../../hooks/useCRUD";
 
 const ProductManagement = () => {

@@ -2,12 +2,12 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import CartContextProvider from "./contexts/CartContext.jsx";
+import { QueryClientProviderApp } from "./api/queryClient.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <CartContextProvider>
+    <QueryClientProviderApp>
       <App />
-    </CartContextProvider>
+    </QueryClientProviderApp>
   </StrictMode>,
 );

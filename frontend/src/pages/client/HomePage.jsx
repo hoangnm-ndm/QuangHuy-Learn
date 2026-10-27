@@ -1,23 +1,21 @@
-import React from "react";
-import { useCRUD } from "../../hooks/useCRUD";
-import { productAPI } from "../../../api/productAPI";
-import { useState } from "react";
-import { useContext } from "react";
-import { CartContext } from "../../contexts/CartContext";
+import { useQuery } from "@tanstack/react-query";
+import { productAPI } from "../../api/productAPI";
 
 const HomePage = () => {
-  const { data } = useCRUD(productAPI);
-  const { cart, addToCart } = useContext(CartContext);
-  const initCart = JSON.parse(localStorage.getItem("cart" || "{}")) ?? {
-    items: [],
-    userId: "123",
-    total: 0,
-  };
-  // total tinh sai
-  // khi them san pham da co thi can tang so luong thay vi tao 1 ban ghi moi
+  const { isPending, error, data } = useQuery({
+    queryKey: ["products"],
+    queryFn: productAPI.getAll,
+  });
+
+  console.log(data.data.data);
+
+  if (isPending) return "Loading...";
+
+  if (error) return "An error has occurred: " + error.message;
+
   return (
     <div>
-      {data.map((item) => (
+      {data.data.data.map((item) => (
         <div className="product-card" key={item._id}>
           <img src={item.thumbnail} alt={item.title} />
           <div className="product-infor">

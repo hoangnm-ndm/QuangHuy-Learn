@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useForm } from "react-hook-form";
-import { productAPI } from "../../../../api/productAPI";
+import { productAPI } from "../../../api/productAPI";
 import { useCRUD } from "../../../hooks/useCRUD";
 import { zodResolver } from "../../../../node_modules/@hookform/resolvers/zod/src/zod";
 import { productSchema } from "../../../shared/validation/productSchema";
